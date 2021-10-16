@@ -1,5 +1,4 @@
 import React from "react";
-import color from "color-js";
 import Color from "color-js";
 
 function Draggable({ draggable, onDragStart, onDrop }) {
