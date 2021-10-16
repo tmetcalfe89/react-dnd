@@ -5,6 +5,7 @@ import DraggableForm from "./components/DraggableForm";
 import DragTrash from "./components/DragTrash";
 import randomColor from "randomcolor";
 import util from "./util";
+import DropOpts from "./components/DropOpts";
 
 function App() {
   const [draggables, setDraggables] = useState([
@@ -21,6 +22,7 @@ function App() {
       id: util.numberToLetters(2),
     },
   ]);
+  const [dropOpt, setDropOpt] = useState("swap");
 
   const onDragStart = (e) => {
     e.dataTransfer.setData("text", e.target.getAttribute("draggable-id"));
@@ -67,6 +69,11 @@ function App() {
     setDraggables(clone);
   };
 
+  const dropOpts = {
+    swap,
+    insert,
+  };
+
   const add = (draggable) => {
     setDraggables([
       ...draggables,
@@ -93,10 +100,11 @@ function App() {
   return (
     <div>
       <DraggableForm add={add} />
+      <DropOpts opts={Object.keys(dropOpts)} updateOpt={setDropOpt} />
       <DraggableList
         list={draggables}
         onDragStart={onDragStart}
-        onDrop={insert}
+        onDrop={dropOpts[dropOpt]}
       />
       <DragTrash remove={remove} />
     </div>
