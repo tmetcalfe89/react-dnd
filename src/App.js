@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DraggableList from "./components/DraggableList";
 import "./App.css";
 import DraggableForm from "./components/DraggableForm";
+import DragTrash from "./components/DragTrash";
 
 function App() {
   const [draggables, setDraggables] = useState([
@@ -68,6 +69,19 @@ function App() {
     setDraggables([...draggables, draggable]);
   };
 
+  const remove = (e) => {
+    const clone = [...draggables];
+
+    const droppedId = e.dataTransfer.getData("text");
+    const droppedIndex = clone.findIndex(
+      (draggable) => draggable.id === droppedId
+    );
+
+    clone.splice(droppedIndex, 1);
+
+    setDraggables(clone);
+  };
+
   return (
     <div>
       <DraggableForm add={add} />
@@ -76,6 +90,7 @@ function App() {
         onDragStart={onDragStart}
         onDrop={insert}
       />
+      <DragTrash remove={remove} />
     </div>
   );
 }
