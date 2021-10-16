@@ -3,19 +3,20 @@ import DraggableList from "./components/DraggableList";
 import "./App.css";
 import DraggableForm from "./components/DraggableForm";
 import DragTrash from "./components/DragTrash";
+import randomColor from "randomcolor";
 
 function App() {
   const [draggables, setDraggables] = useState([
     {
-      color: "#41D3BD",
+      color: randomColor(),
       id: "A",
     },
     {
-      color: "#DE6449",
+      color: randomColor(),
       id: "B",
     },
     {
-      color: "#407899",
+      color: randomColor(),
       id: "C",
     },
   ]);

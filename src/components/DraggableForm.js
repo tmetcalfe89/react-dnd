@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import randomColor from "randomcolor";
 
 function DraggableForm({ add }) {
   const [color, setColor] = useState("");
@@ -24,6 +25,9 @@ function DraggableForm({ add }) {
         placeholder="ID"
       />
       <button>Add</button>
+      <button onClick={() => setColor(randomColor())} type="button">
+        Randomize
+      </button>
     </form>
   );
 }
