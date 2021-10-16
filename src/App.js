@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DraggableList from "./components/DraggableList";
 import "./App.css";
+import DraggableForm from "./components/DraggableForm";
 
 function App() {
   const [draggables, setDraggables] = useState([
@@ -63,8 +64,13 @@ function App() {
     setDraggables(clone);
   };
 
+  const add = (draggable) => {
+    setDraggables([...draggables, draggable]);
+  };
+
   return (
     <div>
+      <DraggableForm add={add} />
       <DraggableList
         list={draggables}
         onDragStart={onDragStart}
