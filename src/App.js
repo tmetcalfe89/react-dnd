@@ -4,20 +4,21 @@ import "./App.css";
 import DraggableForm from "./components/DraggableForm";
 import DragTrash from "./components/DragTrash";
 import randomColor from "randomcolor";
+import util from "./util";
 
 function App() {
   const [draggables, setDraggables] = useState([
     {
       color: randomColor(),
-      id: "A",
+      id: util.numberToLetters(0),
     },
     {
       color: randomColor(),
-      id: "B",
+      id: util.numberToLetters(1),
     },
     {
       color: randomColor(),
-      id: "C",
+      id: util.numberToLetters(2),
     },
   ]);
 
@@ -67,7 +68,13 @@ function App() {
   };
 
   const add = (draggable) => {
-    setDraggables([...draggables, draggable]);
+    setDraggables([
+      ...draggables,
+      {
+        ...draggable,
+        id: util.getNextId(draggables),
+      },
+    ]);
   };
 
   const remove = (e) => {
